@@ -9,6 +9,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../assets/FIRMNET.png";
 
 const { Header, Sider, Content } = Layout;
 
@@ -50,7 +51,6 @@ function CustomLayout({ children }) {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider trigger={null} collapsible collapsed={collapsed} width={240}>
-        <div className="demo-logo-vertical" />
         <Menu theme="dark" mode="inline" selectedKeys={getSelectedKeys()}>
           <Menu.Item key="1" icon={<HomeOutlined />}>
             <Link to="/">
@@ -79,6 +79,9 @@ function CustomLayout({ children }) {
           style={{
             padding: 0,
             background: colorBgContainer,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           <Button
@@ -87,10 +90,14 @@ function CustomLayout({ children }) {
             onClick={toggleSider}
             style={{
               fontSize: "16px",
-              width: 64,
-              height: 64,
+              width: 50,
+              height: 50,
             }}
+            className="ml-2"
           />
+          <Link to="/" hoverable={false} className="flex justify-center flex-1">
+            <img src={logo} alt="logo" className="w-16 h-16" />
+          </Link>
         </Header>
         <Content
           style={{
