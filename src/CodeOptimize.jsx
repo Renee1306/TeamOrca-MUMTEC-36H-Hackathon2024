@@ -32,65 +32,40 @@ function CodeOptimize() {
         <Col span={12} className="flex flex-col">
           <Card title="Optimization Option" className="shadow-sm flex-1">
             <div className="flex flex-col space-y-4 text-lg">
-              <Checkbox
-                checked={optimizeCode}
-                onChange={(e) => setOptimizeCode(e.target.checked)}
-                className="text-lg"
-              >
-                Remove Unuse Variable
-              </Checkbox>
-              <Checkbox
-                checked={optimizeCode}
-                onChange={(e) => setOptimizeCode(e.target.checked)}
-                className="text-lg"
-              >
-                Inline Simple Function
-              </Checkbox>
-              <Checkbox
-                checked={optimizeCode}
-                onChange={(e) => setOptimizeCode(e.target.checked)}
-                className="text-lg"
-              >
-                Apply Loop Unrolling
-              </Checkbox>
-              <Checkbox
-                checked={optimizeCode}
-                onChange={(e) => setOptimizeCode(e.target.checked)}
-                className="text-lg"
-              >
-                Constant Propagation
-              </Checkbox>
-              <Checkbox
-                checked={optimizeCode}
-                onChange={(e) => setOptimizeCode(e.target.checked)}
-                className="text-lg"
-              >
-                Dead Code Elimination
-              </Checkbox>
+              <Checkbox className="text-lg">Remove Unuse Variable</Checkbox>
+              <Checkbox className="text-lg">Inline Simple Function</Checkbox>
+              <Checkbox className="text-lg">Apply Loop Unrolling</Checkbox>
+              <Checkbox className="text-lg">Constant Propagation</Checkbox>
+              <Checkbox className="text-lg">Dead Code Elimination</Checkbox>
             </div>
-            <Button type="primary" className="mt-4">
+            <Button
+              type="primary"
+              className="mt-4"
+              onClick={() => setOptimizeCode(true)}
+            >
               Optimize Code
             </Button>
           </Card>
         </Col>
       </Row>
-      <Row>
-        <Card title="Optimization Result" className="shadow-sm flex-1">
-          <Alert
-            message="Code size reduction: 15%"
-            showIcon
-            type="info"
-            className="mb-4"
-          />
-          <Alert
-            message="Estimated performance improvement: 10%"
-            showIcon
-            type="info"
-            className="mb-4"
-          />
-          <Typography.Title level={5}>Optimized Code</Typography.Title>
-          <TextArea
-            placeholder="
+      {optimizeCode && (
+        <Row>
+          <Card title="Optimization Result" className="shadow-sm flex-1">
+            <Alert
+              message="Code size reduction: 15%"
+              showIcon
+              type="info"
+              className="mb-4"
+            />
+            <Alert
+              message="Estimated performance improvement: 10%"
+              showIcon
+              type="info"
+              className="mb-4"
+            />
+            <Typography.Title level={5}>Optimized Code</Typography.Title>
+            <TextArea
+              placeholder="
             // Your optimized code will appear here
             void setup() {
                 // Optimized setup code
@@ -99,12 +74,13 @@ function CodeOptimize() {
             void loop() {
                 // Optimized main loop
             }"
-            rows={20}
-            disabled
-            className="mb-4"
-          />
-        </Card>
-      </Row>
+              rows={20}
+              disabled
+              className="mb-4"
+            />
+          </Card>
+        </Row>
+      )}
     </CustomLayout>
   );
 }
