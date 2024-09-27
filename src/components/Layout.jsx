@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HomeOutlined,
   CodeOutlined,
@@ -13,7 +13,9 @@ import { Link, useLocation } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 function CustomLayout({ children }) {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(
+    localStorage.getItem("collapsed") === "true",
+  );
   const location = useLocation();
 
   const {
@@ -34,6 +36,16 @@ function CustomLayout({ children }) {
       return ["4"];
     }
   };
+
+  const toggleSider = () => {
+    setCollapsed(!collapsed);
+    localStorage.setItem("collapsed", !collapsed);
+  };
+
+  useEffect(() => {
+    const savedCollapsed = localStorage.getItem("collapsed") === "true";
+    setCollapsed(savedCollapsed);
+  }, []);
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -72,7 +84,7 @@ function CustomLayout({ children }) {
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
+            onClick={toggleSider}
             style={{
               fontSize: "16px",
               width: 64,
