@@ -196,10 +196,11 @@ The dataset is split into 80% of training data and 20% of testing data for furth
 #### Model Training
 
 - MobileV2Net: This model utilizes MobileNet pre-trained on ImageNet (excluding the top layer) with an input shape of (224, 224, 3). A GlobalAveragePooling2D layer reduces dimensionality, followed by a Dense layer with 1024 units and ReLU activation, and a final Dense layer with softmax activation for multi-class classification, based on the number of classes in train_generator.num_classes. The MobileNet layers are frozen during initial training, and the model is compiled with the Adam optimizer (learning rate of 0.001), categorical crossentropy loss, and accuracy as the performance metric. The model is trained for 10 epochs with validation using the test data.
-- ResNet50: This model uses ResNet50 pre-trained on ImageNet (excluding the top layer) with an input shape of (224, 224, 3). A GlobalAveragePooling2D layer reduces dimensionality, followed by a Dense layer with 1024 units and ReLU activation, and a final Dense layer with 4 units and softmax activation for 4-class classification. The ResNet50 layers are frozen during initial training, and the model is compiled with the Adam optimizer, categorical crossentropy loss, and accuracy as the metric. The model is trained for 10 epochs with validation using the test data.
+- EfficientNetB0: This model utilizes EfficientNet as the base (excluding the top layer) with an input shape matching the pre-trained model. A GlobalAveragePooling2D layer reduces dimensionality, followed by a Dense layer with 1024 units and ReLU activation. The final Dense layer with softmax activation predicts 4 classes. The EfficientNet base layers are used without further training, and the custom layers are compiled for training.
+
 
 #### Model Performance Evaluation
 
-Among the 2 models evaluated, the MobileV2Net delivered the stronger performance, achieving an accuracy of 91.95%, compared to ResNet with accuracy of 48.09%.
+Among the 2 models evaluated, the MobileV2Net delivered the stronger performance, achieving an accuracy of 91.95%, compared to EfficientNetB0 with accuracy of 67.00%.
 
 ---
