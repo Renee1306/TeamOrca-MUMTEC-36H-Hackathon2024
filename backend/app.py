@@ -1,4 +1,6 @@
 import os
+import pandas as pd
+import joblib
 import numpy as np
 from flask_cors import CORS
 from flask import (
@@ -6,6 +8,7 @@ from flask import (
     request,
     send_file,
     render_template,
+    jsonify,
 )
 from tensorflow.keras.models import load_model
 from PIL import Image
@@ -154,6 +157,77 @@ def predict():
 def download_image(filename):
     img_path = os.path.join(PROCESSED_FOLDER, filename)
     return send_file(img_path, as_attachment=False)
+
+
+model = joblib.load("decision_tree_model.pkl")
+
+# Define the SMART attributes and their human-readable names
+smart_attributes = {
+    "smart_198_raw": "Offline Uncorrectable Sector Count",
+    "smart_197_raw": "Current Pending Sector Count",
+    "smart_5_raw": "Reallocated Sectors Count",
+    "smart_188_raw": "Command Timeout",
+    "smart_187_raw": "Reported Uncorrectable Errors",
+    "smart_193_raw": "Load/Unload Cycle Count",
+    "smart_190_raw": "Temperature (Celsius)",
+    "smart_194_raw": "Temperature (Celsius)",
+    "smart_1_raw": "Raw Read Error Rate",
+    "smart_195_raw": "Hardware ECC Recovered",
+}
+
+# Available models for the dropdown menu
+available_models = [
+    "ST12000NM0008",
+    "ST8000NM0055",
+    "HGST HUH721212ALN604",
+    "HGST HUH721212ALE604",
+]
+
+
+@app.route("/hdfailure-home")
+def index():
+    return render_template(
+        "index2.html", models=available_models, attributes=smart_attributes
+    )
+
+
+@app.route("/hdfailure", methods=["POST"])
+def hdfailure():
+    # Get the selected model from the dropdown
+    selected_model = request.form["model"]
+
+    # Get the SMART attribute values from the form
+    input_data = [
+        request.form.get(attr, type=float) for attr in smart_attributes.keys()
+    ]
+
+    # Include the selected model in the input data if needed
+    # For now, it's not part of the features but you can use it for logging or display purposes
+
+    # Convert data to DataFrame for prediction
+    input_df = pd.DataFrame([input_data], columns=smart_attributes.keys())
+
+    # Make prediction
+    prediction = model.predict(input_df)
+
+    # Interpret the prediction (0: no failure, 1: failure)
+    prediction_text = (
+        "Failure predicted" if prediction[0] == 1 else "No failure predicted"
+    )
+
+    # Prepare the display for smart attributes and user input
+    input_values = {
+        smart_attributes[attr]: input_data[i]
+        for i, attr in enumerate(smart_attributes.keys())
+    }
+
+    return jsonify(
+        {
+            "prediction": prediction_text,
+            "input_values": input_values,
+            "model": selected_model,
+        }
+    )
 
 
 if __name__ == "__main__":

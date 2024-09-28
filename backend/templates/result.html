@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p>Selected Model: {{ model }}</p>
+    <p>{{ prediction }}</p>
+
+    <h2>SMART Attribute Values</h2>
+    <ul>
+        {% for attr_name, value in input_values.items() %}
+        <li>{{ attr_name }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Go back</a>
+</body>
+</html>

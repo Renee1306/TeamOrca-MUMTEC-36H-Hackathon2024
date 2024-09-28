@@ -36,6 +36,9 @@ function CustomLayout({ children }) {
     if (location.pathname === "/performance-benchmark") {
       return ["4"];
     }
+    if (location.pathname === "/firmware") {
+      return ["5"];
+    }
   };
 
   const toggleSider = () => {
@@ -70,6 +73,11 @@ function CustomLayout({ children }) {
           <Menu.Item key="4" icon={<LineChartOutlined />}>
             <Link to="/performance-benchmark">
               <span>Performance Benchmark</span>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="5" icon={<LineChartOutlined />}>
+            <Link to="/firmware">
+              <span>Firmware Analysis</span>
             </Link>
           </Menu.Item>
         </Menu>

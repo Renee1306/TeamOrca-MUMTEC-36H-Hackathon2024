@@ -5,6 +5,7 @@ import Home from "./Home";
 import CodeOptimize from "./CodeOptimize";
 import PredMain from "./PredMain";
 import PerfBench from "./PerfBench";
+import Firmware from "./FirmwareAnal";
 import "./App.css";
 import "./styles/tailwind.css";
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/performance-benchmark",
     element: <PerfBench />,
+  },
+  {
+    path: "/firmware",
+    element: <Firmware />,
   },
 ]);
 
