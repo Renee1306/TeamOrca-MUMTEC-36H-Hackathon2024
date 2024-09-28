@@ -16,17 +16,17 @@ from firmware_analysis import analyze_firmware
 
 app = Flask(__name__)
 
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 # Load the model
-model = load_model("mobilenet_malware_model.h5")
+malware_model = load_model("mobilenet_malware_model.h5")
 
 # Define the class labels
 class_labels = [
-    "Benignware",
+    "Malware",
     "Unknown",
     "Hackware",
-    "Malware",
+    "Benignware",
 ]  # Replace with your actual class names
 
 # Ensure directories exist
@@ -131,7 +131,7 @@ def predict():
     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
 
     # Make a prediction using the model
-    predictions = model.predict(img_array)
+    predictions = malware_model.predict(img_array)
 
     # Get the index of the class with the highest probability
     predicted_class_index = np.argmax(predictions[0])
@@ -159,7 +159,7 @@ def download_image(filename):
     return send_file(img_path, as_attachment=False)
 
 
-model = joblib.load("decision_tree_model.pkl")
+hd_failure_model = joblib.load("decision_tree_model.pkl")
 
 # Define the SMART attributes and their human-readable names
 smart_attributes = {
@@ -208,7 +208,7 @@ def hdfailure():
     input_df = pd.DataFrame([input_data], columns=smart_attributes.keys())
 
     # Make prediction
-    prediction = model.predict(input_df)
+    prediction = hd_failure_model.predict(input_df)
 
     # Interpret the prediction (0: no failure, 1: failure)
     prediction_text = (

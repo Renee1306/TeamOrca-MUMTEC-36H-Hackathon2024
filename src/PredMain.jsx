@@ -42,7 +42,8 @@ function PredMain() {
     commandTimeout: "",
     reportedUncorrectableErrors: "",
     loadUnloadCycleCount: "",
-    temperature: "",
+    airFlowTemperature: "",
+    driveTemperature: "",
     rawReadErrorRate: "",
     offlineUncorrectableSectorCount: "",
   });
@@ -271,11 +272,11 @@ function PredMain() {
               </Form.Item>
             </Col>
             <Col span={12} className="flex flex-col">
-              <Form.Item label="Temperature (Celsius)">
+              <Form.Item label="Airflow Temperature (Celsius)">
                 <Input
                   type="number"
-                  name="temperature"
-                  value={formValues.temperature}
+                  name="airFlowTemperature"
+                  value={formValues.airFlowTemperatureemperature}
                   onChange={handleInputChange}
                   className="w-full"
                 />
@@ -284,11 +285,11 @@ function PredMain() {
           </Row>
           <Row gutter={16} className="flex">
             <Col span={12} className="flex flex-col">
-              <Form.Item label="Temperature (Celsius)">
+              <Form.Item label="Drive Temperature (Celsius)">
                 <Input
                   type="number"
-                  name="rawReadErrorRate"
-                  value={formValues.rawReadErrorRate}
+                  name="driveTemperature"
+                  value={formValues.driveTemperature}
                   onChange={handleInputChange}
                   className="w-full"
                 />
@@ -298,8 +299,8 @@ function PredMain() {
               <Form.Item label="Raw Read Error Rate">
                 <Input
                   type="number"
-                  name="offlineUncorrectableSectorCount"
-                  value={formValues.offlineUncorrectableSectorCount}
+                  name="rawReadErrorRate"
+                  value={formValues.rawReadErrorRate}
                   onChange={handleInputChange}
                   className="w-full"
                 />
@@ -335,14 +336,6 @@ function PredMain() {
             <p>
               <strong>Model:</strong> {outputData.model}
             </p>
-            <h3>Input Values:</h3>
-            <ul>
-              {Object.entries(outputData.input_values).map(([key, value]) => (
-                <li key={key}>
-                  {key}: {value}
-                </li>
-              ))}
-            </ul>
           </div>
         )}
       </Modal>
