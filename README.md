@@ -105,7 +105,9 @@ python app.py
 
 ### Usage
 
-[Describe how to use your application. Include example commands, expected inputs, and outputs.]
+![Mobile Model](public/test/PRE.png)
+![Mobile Model](public/test/PRED.png)
+![Mobile Model](public/test/BENCH.png)
 
 ---
 
