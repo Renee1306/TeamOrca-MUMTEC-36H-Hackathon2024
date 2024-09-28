@@ -53,10 +53,13 @@ Firmware is essential for hardware devices, as it provides the necessary low-lev
 - VSCode
 - Neovim
 
-[External APIs]
+[Model Developed]
 
-- xx
-- ***
+- MobileNetV2
+- EfficientNetB0
+- Logistic Regression
+- Decision Tree Classifier
+- AdaBoost Decision Tree Classifier
 
 ### Installation and Setup
 
