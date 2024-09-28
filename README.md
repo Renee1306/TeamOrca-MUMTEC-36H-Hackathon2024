@@ -108,6 +108,8 @@ python app.py
 ![Mobile Model](public/test/PRE.png)
 ![Mobile Model](public/test/PRED.png)
 ![Mobile Model](public/test/BENCH.png)
+![Mobile Model](public/test/FIRM.png)
+![Mobile Model](public/test/FIRM2.png)
 
 ---
 
