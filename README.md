@@ -56,9 +56,7 @@ Firmware is essential for hardware devices, as it provides the necessary low-lev
 [External APIs]
 
 - xx
--
-
----
+- ***
 
 ### Installation and Setup
 
@@ -92,6 +90,12 @@ Run the project using the following command:
 
 ```
 yarn run dev
+```
+
+Run the backend server using the following command:
+
+```
+python app.py
 ```
 
 ---
