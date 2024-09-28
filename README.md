@@ -211,6 +211,6 @@ Among the 2 models evaluated, the MobileV2Net delivered the stronger performance
 https://github.com/Renee1306/firmware-development/blob/master/public/test/Mobile.png
 
 - EfficientNetB0
-https://github.com/Renee1306/firmware-development/blob/master/public/test/Eff.png
+![EfficientNet Model](public/test/Eff.png)
 
 ---
