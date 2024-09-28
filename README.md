@@ -125,7 +125,8 @@ The user can select the hardware type from a dedicated tab. For example, within 
 
 ### 1. Harddrive Failure Prediction
 
-![PredMain](https://github.com/user-attachments/assets/582580ca-2d67-4bbc-a2da-b31f37ecb050)
+[![PredMain](https://github.com/user-attachments/assets/582580ca-2d67-4bbc-a2da-b31f37ecb050)
+](https://github.com/Renee1306/firmware-development/blob/master/public/test/HardwareFailureArchi.png)
 
 #### Dataset Collected
 
@@ -162,19 +163,23 @@ Among the three models evaluated, the Decision Tree Classifier delivered the str
 
 - Decision Tree Classifier
 
-<img width="325" alt="image" src="https://github.com/user-attachments/assets/45d982a8-d67a-47fb-a076-ec73ec6d9fd4">
+[<img width="325" alt="image" src="https://github.com/user-attachments/assets/45d982a8-d67a-47fb-a076-ec73ec6d9fd4">
+](https://github.com/Renee1306/firmware-development/blob/master/public/test/DT.png)
 
 - AdaBoost Decision Tree Classifier
 
-<img width="325" alt="image" src="https://github.com/user-attachments/assets/69403095-5e21-4c57-aef5-87dd85be15f9">
+[<img width="325" alt="image" src="https://github.com/user-attachments/assets/69403095-5e21-4c57-aef5-87dd85be15f9">
+](https://github.com/Renee1306/firmware-development/blob/master/public/test/AB.png)
 
 - Logistic Regression
 
-<img width="325" alt="image" src="https://github.com/user-attachments/assets/7ef42764-18d1-4966-bb57-826dfe8d3d9d">
+[<img width="325" alt="image" src="https://github.com/user-attachments/assets/7ef42764-18d1-4966-bb57-826dfe8d3d9d">
+](https://github.com/Renee1306/firmware-development/blob/master/public/test/LR.png)
 
 ### 2. Firmware Prediction
 
-![FirmAnaly](https://github.com/user-attachments/assets/99727d0f-1194-4776-b1a3-149fd9a1bfae)
+[![FirmAnaly](https://github.com/user-attachments/assets/99727d0f-1194-4776-b1a3-149fd9a1bfae)
+](https://github.com/Renee1306/firmware-development/blob/master/public/test/FirmwareAnalysisSysArchi.png)
 
 #### Dataset Collected
 
@@ -202,5 +207,10 @@ The dataset is split into 80% of training data and 20% of testing data for furth
 #### Model Performance Evaluation
 
 Among the 2 models evaluated, the MobileV2Net delivered the stronger performance, achieving an accuracy of 91.95%, compared to EfficientNetB0 with accuracy of 67.00%.
+- MobileV2Net
+https://github.com/Renee1306/firmware-development/blob/master/public/test/Mobile.png
+
+- EfficientNetB0
+https://github.com/Renee1306/firmware-development/blob/master/public/test/Eff.png
 
 ---
