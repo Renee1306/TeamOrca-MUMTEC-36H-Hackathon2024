@@ -1,7 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Home";
 import CodeOptimize from "./CodeOptimize";
 import PredMain from "./PredMain";
 import PerfBench from "./PerfBench";
@@ -12,10 +11,6 @@ import "./styles/tailwind.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/code-optimize",
     element: <CodeOptimize />,
   },
   {
