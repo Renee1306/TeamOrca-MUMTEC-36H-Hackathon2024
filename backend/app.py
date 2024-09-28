@@ -1,11 +1,19 @@
 import os
 import numpy as np
-from flask import Flask, request, send_file, render_template, render_template_string
+from flask_cors import CORS
+from flask import (
+    Flask,
+    request,
+    send_file,
+    render_template,
+)
 from tensorflow.keras.models import load_model
 from PIL import Image
 from firmware_analysis import analyze_firmware
 
 app = Flask(__name__)
+
+CORS(app)
 
 # Load the model
 model = load_model("mobilenet_malware_model.h5")
@@ -134,33 +142,12 @@ def predict():
     # Generate the firmware analysis table
     firmware_analysis_html = firmware_analysis_table(firmware_analysis_result)
 
-    # HTML template to display the image, prediction, and firmware analysis
-    html_content = f"""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Prediction and Analysis Result</title>
-    </head>
-    <body>
-        <h1>Prediction Result</h1>
-        <p>Predicted Class: {predicted_class_label}</p>
-        <p>Confidence Score: {predictions[0][predicted_class_index]:.4f}</p>
-        <img src="/download_image/{img_filename}" alt="Generated Image" style="width:224px;height:224px;"><br><br>
-        <a href="/download_image/{img_filename}" download="{img_filename}">
-            <button>Download Image</button>
-        </a>
-        <br><br>
-        <h2>Firmware Analysis</h2>
-        {firmware_analysis_html}
-        <br><br>
-        <a href="/">Go back</a>
-    </body>
-    </html>
-    """
-
-    return render_template_string(html_content)
+    return {
+        "predictionResult": predicted_class_label,
+        "confidenceScore": float(predictions[0][predicted_class_index]),
+        "image": img_filename,
+        "firmwareAnalysis": firmware_analysis_html,
+    }
 
 
 @app.route("/download_image/<filename>")
