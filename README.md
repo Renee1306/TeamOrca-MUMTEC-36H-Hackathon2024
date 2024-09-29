@@ -66,7 +66,7 @@ Firmware is essential for hardware devices, as it provides the necessary low-lev
 To install the project, run the following command in your terminal:
 
 ```
-git clone git@github.com:Renee1306/firmware-development.git
+git clone https://github.com/Renee1306/TeamOrca-MUMTEC-36H-Hackathon2024.git
 ```
 
 Change the directory to the project using the following command:
